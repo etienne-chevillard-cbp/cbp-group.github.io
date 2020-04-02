@@ -1,41 +1,54 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# Site
+name: "CBP Tech Blog"
+title: "CBP Tech Blog"
+description: "Blog technique de CBP."
+logo: 'assets/images/favicon.ico'
+favicon: 'assets/images/favicon.ico'
+include: ["_pages"]
+permalink: /:title/
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: CBP Tech Blog
-email: sebastien.errien@cbp-group.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Expert en assurance emprunteur et produits de prévoyance.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://cbp-group.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: CbpFrance
-github_username:  cbp-group
+# Authors
+authors:
+  seb:
+    name: Seb
+    display_name: Seb
+    avatar: 'assets/images/seb.jpg'
+    email: sebastien.errien@cbp-group.com
+    twitter: https://twitter.com/SebErrien
+    description: "Tall | Computer scientist | Amateur guitarist | CBP Platforms Architect and Product Owner."
 
-# Build settings
-markdown: kramdown
-theme: minima
+# Plugins
 plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+    
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 6
+paginate_path: /page:num/
+    
+# Other
+markdown: kramdown
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "disabled"
+
+exclude: [LICENSE.txt, README.md, Gemfile, Gemfile.lock]
