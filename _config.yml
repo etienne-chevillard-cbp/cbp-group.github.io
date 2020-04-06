@@ -11,7 +11,7 @@ permalink: /:title/
 authors:
   seb:
     name: Seb
-    display_name: Seb
+    display_name: "Sebastien Errien"
     avatar: 'assets/images/seb.jpg'
     email: sebastien.errien@cbp-group.com
     twitter: https://twitter.com/SebErrien
