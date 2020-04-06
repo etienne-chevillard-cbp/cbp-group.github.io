@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Kube / Istio / External-Dns / Cert-Manager/ Let' Encrypt - Partie 1/2"
+title:  "Kube / Istio / External-Dns / Cert-Manager/ Let's Encrypt - Partie 1/2"
 author: seb
 categories: [ Kubernetes, Tutorial ]
 tags: [Kubernetes, Istio, Let's Encrypt, External-Dns, Cert-Manager]
-image: assets/images/kube-istio-externaldns-sert-manager-letsencrypt-part1/illustration.jpg
+image: assets/images/kube-istio-externaldns-cert-manager-letsencrypt-part1/illustration.jpg
 description: "Cet article en deux parties décrit comment utiliser Istio, External-Dns et Cert-Manager dans un cluster Kubernetes pour déployer automatiquement une application accessible en HTTPS et que les entrées DNS et le certificat Let's Encrypt soient créés automatiquement lors de ce déploiement."
 featured: true
 hidden: false
@@ -43,17 +43,17 @@ Le cluster possède 3 points d’entrée exposés via des Classic Load Balancer 
 2. Un point d’entrée public avec terminaison SSL réalisée sur le Load Balancer sur lequel un certificat wildcard est déployé (*.sample.com), le même qu’utilisé sur le point d’entrée privé.
 3. Un point d’entrée public avec terminaison ssl réalisée sur l’Ingress Gateway Istio avec des certificats SSL générés par Let’s Encrypt.
 
-![image](/assets/images/kube-istio-externaldns-sert-manager-letsencrypt-part1/vue_generale.png){:class="img-responsive"}
+![image](/assets/images/kube-istio-externaldns-cert-manager-letsencrypt-part1/vue_generale.png){:class="img-responsive"}
 
 ## Installation et configuration
 
 ### Vue d’ensemble
 
-![image](/assets/images/kube-istio-externaldns-sert-manager-letsencrypt-part1/vue_ensemble.png){:class="img-responsive"}
+![image](/assets/images/kube-istio-externaldns-cert-manager-letsencrypt-part1/vue_ensemble.png){:class="img-responsive"}
 
 ### Répartition par namespaces
 
-![image](/assets/images/kube-istio-externaldns-sert-manager-letsencrypt-part1/namespaces.png){:class="img-responsive"}
+![image](/assets/images/kube-istio-externaldns-cert-manager-letsencrypt-part1/namespaces.png){:class="img-responsive"}
 
 ### Pré-requis
 
@@ -109,7 +109,7 @@ Avant de déployer Istio, nous allons enrichir le fichier de configuration avec 
 
 ### Public SSL Istio Ingress Gateway
 
-![image](/assets/images/kube-istio-externaldns-sert-manager-letsencrypt-part1/detail_gateway.png){:class="img-responsive"}
+![image](/assets/images/kube-istio-externaldns-cert-manager-letsencrypt-part1/detail_gateway.png){:class="img-responsive"}
 
 Une `Ingress Gateway Istio` est composée d’un Service Kubernetes et d’un ou plusieurs Pods correspondants à un proxy Envoy qui sera en charge de router les requêtes.
 
@@ -486,7 +486,7 @@ kubectl apply -f manifest.yaml -n istio-system
 
 #### Fonctionnement
 
-![image](/assets/images/kube-istio-externaldns-sert-manager-letsencrypt-part1/external_dns.png){:class="img-responsive"}
+![image](/assets/images/kube-istio-externaldns-cert-manager-letsencrypt-part1/external_dns.png){:class="img-responsive"}
 
 External-Dns est à l’écoute des déploiements d’objets Gateway. Attention, Il ne s’agit pas des Istio Ingress Gateway mais bien des custom resources Gateway qui sont déployées avec les applications `(1)`.
 Si un objet gateway porte l’annotation attendue par External-Dns et que le nom de domaine de l’hôte configuré dans l’objet Gateway est dans la liste de ceux gérés par External-Dns `(2)`, alors External-Dns va chercher sur l’Istio Ingress Gateway concernée par l’objet Gateway le nom DNS du point d’entrée correspondant (ici un Load Balancer AWS) `(3)`  et va créer un enregistrement dans Route 53 `(4)`.
@@ -585,4 +585,4 @@ Le déploiement s’effectue avec kubectl dans le namespace `default`:
 kubectl apply -f external-dns-deployment.yaml -n external-dns
 {% endhighlight %}
 
-Nous terminons ici la première partie. La suite traitera de Cert-Manager et du déploiement de l'application.
+Nous terminons ici la première partie. La suite, disponible [ici]({% post_url 2020-04-6-kube-istio-externaldns-cert-manager-letsencrypt-part2 %}), traitera de Cert-Manager et du déploiement de l'application.
