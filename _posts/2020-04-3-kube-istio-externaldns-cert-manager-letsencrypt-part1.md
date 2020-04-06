@@ -13,6 +13,8 @@ toc: true
 beforetoc: "Cet article en deux parties décrit comment utiliser Istio, External-Dns et Cert-Manager dans un cluster Kubernetes pour déployer automatiquement une application accessible en HTTPS et que les entrées DNS et le certificat Let's Encrypt soient créés automatiquement lors de ce déploiement. Dans cette première partie, nous allons décrire le contexte et l'installation d'Istio ainsi que d'External-Dns."
 ---
 
+Commençons par décrire le contexte et l'installation d'Istio et External-Dns.
+
 ## Context
 
 Le nom d’hôte utilisé dans ce document est `application.sample.com` cela suppose de possèder le nom de domaine `sample.com`.
