@@ -1,6 +1,6 @@
 ---
 layout: page
-title: A propos de CBP
+title: A propos de Cbp
 permalink: /about
 comments: false
 ---
@@ -10,7 +10,7 @@ comments: false
 
 <p>Cbp est une filiale du groupe Financière CEP. Notre siège social est implanté en région nantaise à Saint-Herblain (44). Experts en assurance emprunteur et en prévoyance individuelle depuis maintenant plus de 26 ans, nous développons notre business model sur le territoire européen.</p>
 
-<p class="mb-5"><img class="shadow-lg" src="{{site.baseurl}}/assets/images/site-cbp.png" alt="Site instiyutionnel de CBP" /></p>
+<p class="mb-5"><img class="shadow-lg" src="{{site.baseurl}}/assets/images/site-cbp.png" alt="Site institutionnel de Cbp" /></p>
 
 <h4>Questions ou bug reports ?</h4>
 

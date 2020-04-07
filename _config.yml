@@ -1,7 +1,7 @@
 # Site
-name: "CBP Tech Blog"
-title: "CBP Tech Blog"
-description: "Blog technique de CBP."
+name: "Cbp Tech Blog"
+title: "Cbp Tech Blog"
+description: "Blog technique de Cbp."
 logo: 'assets/images/favicon.ico'
 favicon: 'assets/images/favicon.ico'
 include: ["_pages"]
@@ -15,7 +15,7 @@ authors:
     avatar: 'assets/images/seb.jpg'
     email: sebastien.errien@cbp-group.com
     twitter: https://twitter.com/SebErrien
-    description: "Tall | Computer scientist | Amateur guitarist | CBP Platforms Architect and Product Owner."
+    description: "Tall | Computer scientist | Amateur guitarist | Cbp Platforms Architect and Product Owner."
 
 # Plugins
 plugins:
