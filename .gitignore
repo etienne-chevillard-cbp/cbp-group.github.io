@@ -2,3 +2,5 @@ _site
 .sass-cache
 .jekyll-metadata
 .jekyll-cache
+/cbp-group.github.io.iml
+/.idea/
