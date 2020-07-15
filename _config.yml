@@ -16,6 +16,13 @@ authors:
     email: sebastien.errien@cbp-group.com
     twitter: https://twitter.com/SebErrien
     description: "Tall | Computer scientist | Amateur guitarist | Cbp Platforms Architect and Product Owner."
+  gde:
+    name: Guillaume
+    display_name: "Guillaume Deleplace"
+    avatar: 'assets/images/gde.jpg'
+    email: guillaume.deleplace@cbp-group.com
+    twitter: https://twitter.com/gdeleplace
+    description: "Scrum Master chez Cbp - Coach Professionnel"
 
 # Plugins
 plugins:
