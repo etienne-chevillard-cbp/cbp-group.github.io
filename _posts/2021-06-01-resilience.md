@@ -11,14 +11,16 @@ hidden: false
 comments: false
 ---
 
-Au risque de décevoir certaines personnes, nous n'allons pas parler ici du travail du neuropshychiatre [Boris Cyrulnik](https://fr.wikipedia.org/wiki/Boris_Cyrulnik){:target="_blank"} ni de son
+Au risque de décevoir certaines personnes, nous n'allons pas parler ici du travail du neuropsychiatre [Boris Cyrulnik](https://fr.wikipedia.org/wiki/Boris_Cyrulnik){:target="_blank"} ni de son
 travail sur l'aspect psychologique de la résilience. Le monde de l'informatique n'a pas fait exception aux autres domaines et lui aussi
 s'est accaparé cette notion plutôt dans l'air du temps mais pas si nouvelle que ça...
 
 ## La résilience dans le SI
 
-Dans un système applicatif, nous définirons la résilience comme la tolérance du système aux pannes. Nous pouvons préciser cette notion en ajoutant que le système soumis aux pannes doit pouvoir retrouver
-le même fonctionnement qu'avant la perturbation. Cela reste très abstrait alors rentrons dans le détail avec du concret.
+Dans un système applicatif, nous définirons la résilience comme la tolérance du système aux pannes. 
+Nous pouvons préciser cette definition en y en ajoutant la notions d'auto-remédiation, en ajoutant que le système soumis aux pannes doit 
+pouvoir retrouver le même fonctionnement qu'avant la perturbation, et enfin que notre système doit éviter de provoquer des nuisances co-latérales potentielles. 
+Cela reste très abstrait alors rentrons dans le détail avec du concret.
 
 ### Le Contexte
 
@@ -87,28 +89,28 @@ public CircuitBreakerConfig createConfiguration() {
 ### Implémentation avec AspectJ
 
 La mise en place d'un circuit breaker s'inscrit dans une logique technique. A ce titre, il serait intéressant d'éviter de "polluer" le code
-fonctionnel avec du code "technique". Pour faire cela, on peut s'appuyer sur le paradygme AOP. La programmation orientée aspect va nous permettre
+fonctionnel avec du code "technique". Pour faire cela, on peut s'appuyer sur le paradigme AOP. La programmation orientée aspect va nous permettre
 de mettre à part nos "préoccupations" techniques liées à la mise en place du CircuitBeaker.
 
 Pour ce faire, on va simplement annoter notre méthode pour indiquer qu'elle bénéficie de l'outillage "coupe-circuit"
 
 ```java
-    @DmsCircuitBreakerFunction(value = "CbpCircuitBreaker")
+    @CircuitBreakerFunction(value = "CbpCircuitBreaker")
 ```
 
 Par ailleurs, on définit un composant aspect avec notre annotation `@Around` qui sert de "proxy" à la méthode cible qui est censée faire nos appels externes.
 Ce système de proxy utilise un supplier que l'on fournit à l'implémentation du CircuitBeaker qui se chargera de faire l'appel à notre méthode finale.
 
 ```java
-    @Around("@annotation(CbpCircuitBreaker)")
+    @Around("@annotation(CircuitBreakerFunction)")
     public Object doConcurrentOperation(ProceedingJoinPoint pjp) {
         // Ici on récupère le nom du circuit breaker issu du paramètre de l'annotation
-        String cbName = ((MethodSignature) pjp.getSignature()).getMethod().getAnnotation(DmsCircuitBreakerFunction.class).value();
+        String cbName = ((MethodSignature) pjp.getSignature()).getMethod().getAnnotation(CircuitBreakerFunction.class).value();
         Supplier<Object> supplier = () -> {
             try {
                 return pjp.proceed();
             }
-            catch (TechnicalException|FunctionalException e) {
+            catch (FunctionalException e) {
                 throw e;
             }
             catch (Throwable throwable) {
@@ -133,7 +135,7 @@ Tout d'abord, le système publisher/subscriber fonctionne sur plusieurs instance
 Mais comment le CicuitBreaker peut-il fonctionner à travers ces multiples instances ?
 La réponse est simple, ça reste cloisonné par instance Ec2 et c'est pas grave !
 
-Le mécanisme de CicuitBreaker est géré par la JVM, et à ce titre, les métriques ne sont valables que par instances. On peut donc
+Le mécanisme de CicuitBreaker est géré par la JVM, et à ce titre, les métriques ne sont valables que par instance. On peut donc
 imaginer une machine Ec2 qui, à un instant donné, arrête de faire des appels au service sous-jacent en "ouvrant" son circuit alors 
 qu'une autre machine continue un certain temps de faire les appels en échec jusqu'à ce qu'il "s'ouvre" naturellement lui aussi.
 
@@ -149,7 +151,8 @@ Pour cela, on utilise la librairie io.micrometer
     TaggedCircuitBreakerMetrics.ofCircuitBreakerRegistry(circuitBreakerRegistry).bindTo(meterRegistry);
 ```
 
-Ensuite, nous ajoutons, dans notre cas, la métrique failure rate qui nous intéresse dans le Bean JMX (`JMXLogger`)
+Ensuite, nous pouvons ajouter la métrique failure rate qui nous intéresse dans le Bean JMX à l'aide 
+d'une classe custom `JMXLogger`. Cette classe nous permet de valuer nos log Marker en fonction des attributs JMX désirés.
 
 ```
                 <bean class="com.cbp.csp.dms.monitoring.MonitoringPoint">
