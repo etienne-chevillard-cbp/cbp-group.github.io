@@ -23,6 +23,13 @@ authors:
     email: guillaume.deleplace@cbp-group.com
     twitter: https://twitter.com/gdeleplace
     description: "Scrum Master chez Cbp - Coach Professionnel"
+  ebi:
+    name: Emmanuel
+    display_name: "Emmanuel Biard"
+    avatar: 'assets/images/ebi.jpg'
+    email: emmanuel.biard@cbp-group.com
+    twitter: https://twitter.com/m4nux
+    description: "computer lover"
 
 # Plugins
 plugins:
