@@ -18,8 +18,8 @@ s'est accaparé cette notion plutôt dans l'air du temps mais pas si nouvelle qu
 ## La résilience dans le SI
 
 Dans un système applicatif, nous définirons la résilience comme la tolérance du système aux pannes. 
-Nous pouvons préciser cette definition en y en ajoutant la notions d'auto-remédiation, en ajoutant que le système soumis aux pannes doit 
-pouvoir retrouver le même fonctionnement qu'avant la perturbation, et enfin que notre système doit éviter de provoquer des nuisances co-latérales potentielles. 
+Nous pouvons préciser cette definition en y en ajoutant la notion d'auto-remédiation, en ajoutant que le système soumis aux pannes doit 
+pouvoir retrouver le même fonctionnement qu'avant la perturbation, et enfin que notre système doit éviter de provoquer des nuisances collatérales potentielles. 
 Cela reste très abstrait alors rentrons dans le détail avec du concret.
 
 ### Le Contexte
