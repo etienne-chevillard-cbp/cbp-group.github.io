@@ -6,7 +6,7 @@ categories: [ Kubernetes, Tutorial ]
 tags: [Kubernetes, Istio, Let's Encrypt, External-Dns, Cert-Manager]
 image: assets/images/kube-istio-externaldns-cert-manager-letsencrypt-part1/illustration.jpg
 description: "Cet article en deux parties décrit comment utiliser Istio, External-Dns et Cert-Manager dans un cluster Kubernetes pour déployer automatiquement une application accessible en HTTPS et que les entrées DNS et le certificat Let's Encrypt soient créés automatiquement lors de ce déploiement."
-featured: true
+featured: false
 hidden: false
 comments: false
 toc: true

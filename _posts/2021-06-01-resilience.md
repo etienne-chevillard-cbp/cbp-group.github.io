@@ -6,7 +6,7 @@ categories: [ Java, Developers, Resilience ]
 tags: [Java, resilience4j, Circuit Breaker, Aspectj, Spring, Kibana, JMX]
 image: assets/images/resilience/resilience.jpg
 description: "Ajouter un peu de résilience sur vos systèmes"
-featured: false
+featured: true
 hidden: false
 comments: false
 ---
