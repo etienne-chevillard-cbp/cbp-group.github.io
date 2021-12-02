@@ -6,7 +6,7 @@ categories: [ Agilité, Témoignage ]
 tags: [Agilité]
 image: assets/images/scrum-master/scrum-master.png
 description: "Le rôle de Scrum Master."
-featured: false
+featured: true
 hidden: false
 comments: false
 ---

@@ -6,7 +6,7 @@ categories: [ Agilité, Témoignage ]
 tags: [Agilité]
 image: assets/images/formation-distance/formation-a-distance.jpg
 description: "Formation et distance, est-ce vraiment compatible ?"
-featured: false
+featured: true
 hidden: false
 comments: false
 ---
