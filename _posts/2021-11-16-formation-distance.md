@@ -26,21 +26,21 @@ Cette formation est construite comme une initiation à l’agilité avec au prog
 
 Et le tout dans un PowerPoint d’une cinquantaine de pages.
 
-Il me reste plus qu’à convertir la formation en distanciel. Plus facile à dire qu’à faire… Plusieurs points me viennent à l’esprit :
+Il ne me reste plus qu’à convertir la formation en distanciel. Plus facile à dire qu’à faire… Plusieurs points me viennent à l’esprit :
 
-####1. Les outils
+#### 1. Les outils
 
 Nous utilisons déjà [Google Meet](https://apps.google.com/meet/) et [Miro](https://miro.com/) pour nos ateliers à distance. C’est suffisant pour la visioconférence et le support de formation. Pour rendre la formation encore plus dynamique, j’intègre la solution [AhaSlides](https://ahaslides.com/) dans mon support numérique qui permet de proposer des questionnaires plus engageants et interactifs pour les apprenants.
 
 
-####2. La théorie
+#### 2. La théorie
 
 Je me rends compte en adaptant cette formation pour du distanciel que j’avais construit la formation sur une quantité conséquente d’apports théoriques malgré les ateliers prévus. Je me rappelle m'être fait la remarque que j’avais l’impression de redescendre un savoir sur les participants plus que d’être dans un état d'esprit d’échange et de partage.
 
 Je choisis donc de m’appuyer sur des vidéos en ligne d’une dizaine de minutes pour présenter les notions clés. Elles vont à l’essentiel et permettent de varier le ton de la formation et j’axe les conversations sur les problématiques de l’équipe.
 
 
-####3. Le cadre
+#### 3. Le cadre
 
 Que ce soit pour une réunion, un atelier ou une formation, le cadre est indispensable. Il permet de définir les règles de fonctionnement afin que les échanges aient lieu dans les meilleures conditions possibles.
 
@@ -49,7 +49,7 @@ Dans le cas d’une formation à distance, se voir entre participants est obliga
 Si vous avez l’habitude d’animer des rétrospectives, présenter la [Directive Première](https://retrospectivewiki.org/index.php?title=The_Prime_Directive) est pertinent en début d’atelier.
 
 
-####4. La gestion du temps
+#### 4. La gestion du temps
 
 En ce qui concerne la gestion du temps, je m’appuie sur les études de la chronopsychologie. Pour information, selon l’ouvrage [Psychologie du Travail et des Organisations](https://www.dunod.com/sciences-humaines-et-sociales/psychologie-du-travail-et-organisations-domaines-recherches-et-d), la chronopsychologie est “une discipline qui étudie, à des fins de compréhension mais aussi d'aménagement, les rythmes comportementaux, cognitifs et psychiques humains. [...]. Concernant le travail, elle permet de saisir comment le travailleur réagit organiquement, psychologiquement et comportementalement à la façon dont est organisé son temps de travail”.
 
@@ -58,7 +58,7 @@ Avec un temps de concentration moyen de 30 à 60 minutes, je dois faire en sorte
 De plus, on considère que l’attention des participants est à son optimum entre 10h-12h et 16h-18h. Malheureusement, comme la fatigue se fait plus rapidement sentir en visioconférence, les formations ne doivent pas dépasser les 6 à 7 heures par jour.
 
 
-####5. L’attention
+#### 5. L’attention
 
 L’attention étant étroitement liée à la gestion du temps, j’ai découpé la formation en petits blocs afin de garder un rythme dynamique avec des échanges en petits groupes à la fin de chaque bloc. Enfin, centrer les conversations sur leurs problématiques d’équipe les implique davantage.
 
