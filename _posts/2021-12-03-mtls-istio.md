@@ -13,6 +13,8 @@ toc: true
 beforetoc: "Cet article décrit comment exposer un service à l'extérieur d'Istio en le sécurisant avec du mutual TLS."
 ---
 
+Cet article décrit comment exposer un service à l'extérieur d'Istio en le sécurisant avec du mutual TLS.
+
 ## Context
 
 Tout le monde connait ou a entendu parlé de TLS (anciennement ssl). Ce protocol permet de permet de chiffrer les communications et de s'assurer que le client discute avec le bon serveur, ce dernier s'identifiant auprès du client en envoyant un certificat.
