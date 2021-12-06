@@ -39,10 +39,10 @@ La configuration de l'Ingress Gateway Istio est réalisée avec :
 
 ![image](/assets/images/mtls-istio/istio-ingress-gateway.png){:class="img-responsive"}
 
-## De quoi avons-nous besoins ?
+## De quoi avons-nous besoin ?
 
 Nous avons besoins :
-En plus d'un cluster Kubernetes avec istio d'installé (il est possible d'utiliser [mickroK8s](https://microk8s.io/){:target="_blank"} et son plugin istio pour tester)
+En plus d'un cluster Kubernetes avec istio d'installé (il est possible d'utiliser [microK8s](https://microk8s.io/){:target="_blank"} et son plugin istio pour tester)
 - d'une autorité de certification pour valider les certificats lors de la négociation TLS.
 - d'un certificat pour le server pour que le serveur s'identifie auprès du client.
 - d'un certificat pour le client pour que le client s'identifie auprès du server.
