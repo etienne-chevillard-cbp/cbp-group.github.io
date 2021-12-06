@@ -35,7 +35,7 @@ Mark McKergow et Helen Bailey détaillent dans leur livre les six rôles que le 
 Le leader peut avoir un rôle de :
 - Initiator : le leader initie l'événement ;
 - Inviter : le leader invite les personnes à s’engager avec lui ;
-- Space creator : le leader crée un environnement propice afin de
+- Space creator : le leader crée un environnement propice à la collaboration et l'engagement des personnes ;
 - Gatekeeper : le leader définit et protège les limites de l’espace créé. Il sélectionne qui entre et sort de l’espace ;
 - Connector : le leader met en contact les personnes afin qu’elles aient des conversations ;
 - Co-participator : le leader agit et participe comme n’importe quelle autre personne du système.
@@ -58,7 +58,7 @@ Et si le Scrum Master était un Host Leader de l’équipe Scrum ? Les similitud
 
 L’analogie avec les lieux est aussi intéressante :
 - Le Scrum Master étant un facilitateur de l’équipe, il est évidemment au centre de l’attention ;
-- Comme il fait partie de l’équipe, il participe comme les autres mem	bres au développement du produit ;
+- Comme il fait partie de l’équipe, il participe comme les autres membres au développement du produit ;
 - Il doit être capable de prendre de la hauteur sur le fonctionnement de l’équipe pour en comprendre les interactions, détecter d’éventuels dysfonctionnements afin d’être force de proposition pour l’équipe ;
 - Créer et installer un cadre agile demande du temps et de la préparation.
 
