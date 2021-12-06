@@ -23,6 +23,7 @@ Le mTLS (ou mutual TLS) est une version étendue du protocol TLS qui, toujours e
 
 Dans cette article, nous allons voir comment configurer Istio pour exposer un service à l'extérieur du service mesh en le sécurisant avec le protocol mTLS.
 
+Ce modèle avec authentification mutuelle apporte évidemment un meilleur niveau de sécurité (Merci à notre équipe cybersécurité :)
 ## Quelques rappels sur Istio
 
 L'exposition d'un service au sein d'un service mesh géré avec Istio ce décompose ainsi :
@@ -42,11 +43,11 @@ La configuration de l'Ingress Gateway Istio est réalisée avec :
 ## De quoi avons-nous besoin ?
 
 Nous avons besoins :
-En plus d'un cluster Kubernetes avec istio d'installé (il est possible d'utiliser [microK8s](https://microk8s.io/){:target="_blank"} et son plugin istio pour tester)
+En plus d'un cluster Kubernetes avec istio d'installé (il est possible d'utiliser [microK8s](https://microk8s.io/){:target="_blank"} et son plugin istio pour tester. N'ayant dans ce cas pas de Load Balancer, on accédera à la gateway istio en l'exposant en local avec la commande `mk8sctl port-forward -n istio-system service/istio-ingressgateway 8080:80`)
 - d'une autorité de certification pour valider les certificats lors de la négociation TLS.
-- d'un certificat pour le server pour que le serveur s'identifie auprès du client.
-- d'un certificat pour le client pour que le client s'identifie auprès du server.
-- d'une clé privée pour le client pour chiffrer le premier échange du client avec le serveur.
+- d'un "certificat serveur" pour que le serveur s'identifie auprès du client.
+- d'un "certificat client" pour que le client s'identifie auprès du server.
+- d'une clé privée pour le client pour chiffrer le premier échange avec le serveur.
 - d'une application de test. Nous utiliserons l'appli httpbin fournie comme example avec Istio.
 
 ## Génération des certificats
@@ -66,7 +67,7 @@ openssl req \
   -out ca.crt
 {% endhighlight %}
 
-On obtient le fichier `ca.crt` qui sera `à fournir au client et au server` pour que les 2 puissent valider les certificats qui vont êtres générés ci-après.
+On obtient le fichier `ca.crt` qui sera `à fournir au client et au serveur` pour que les 2 puissent valider les certificats qui vont être générés ci-après.
 On obtient aussi le fichier `ca.key` contenant la clé privée permettant de signer des certificats avec cette autorité.
 
 Inspection de l'autorité de certification
@@ -165,9 +166,9 @@ openssl x509 \
 
 Nous allons créer un secret contenant le certificat serveur et sa clé privé ainsi que l'autorité de certification.
 
-Le secret est de type `generic` mais il est possible de créer un secret de type `tls`. Seul la syntaxe des clés dans le secret change. Voir la [documentation d'Istio](https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/#key-formats)
+Le secret est de type `generic` mais il est possible de créer un secret de type `tls`. Seule la syntaxe des clés dans le secret change. Voir la [documentation d'Istio](https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/#key-formats)
 
-L'application déployée ici étant `httpbin`, le secret est nomé `httpbin-mtls`mais le nom importe peu.
+L'application déployée ici étant `httpbin`, le secret est nommé `httpbin-mtls` mais le nom importe peu.
 
 {% highlight shell %}
 kubectl create -n istio-system secret generic httpbin-mtls  \
