@@ -2,7 +2,7 @@
 layout: post
 title:  "mTLS / Istio : Sécuriser un service exposé à l'exterieur du service mesh"
 author: seb
-categories: [ Tutorial, Sécurité]
+categories: [ Tutorial, Sécurité, Istio]
 tags: [mTLS, istio, sécurité]
 image: assets/images/mtls-istio/mtls-istio.jpg
 description: "Cet article décrit comment exposer un service à l'extérieur d'Istio en le sécurisant avec du mutual TLS."
