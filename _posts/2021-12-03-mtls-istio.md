@@ -17,11 +17,11 @@ Cet article décrit comment exposer un service à l'extérieur d'Istio en le sé
 
 ## Context
 
-Tout le monde connait ou a entendu parlé de TLS (anciennement ssl). Ce protocol permet de permet de chiffrer les communications et de s'assurer que le client discute avec le bon serveur, ce dernier s'identifiant auprès du client en envoyant un certificat.
+Tout le monde connait ou a entendu parler de TLS (anciennement SSL). Ce protocole permet de chiffrer les communications et de s'assurer que le client discute avec le bon serveur, ce dernier s'authentifiant auprès du client en envoyant un certificat.
 
-Le mTLS (ou mutual TLS) est une version étendue du protocol TLS qui, toujours en permettant de chiffrer les communications, permet non seulement au client de s'assurer que le serveur auquel il s'addresse est le bon, mais permet aussi au serveur d'être sûr que le client est bien autorisé à l'appeler.
+Le mTLS (ou mutual TLS) est une version étendue du protocole TLS qui, toujours en permettant de chiffrer les communications, permet non seulement au client de s'assurer que le serveur auquel il s'addresse est le bon, mais permet aussi au serveur d'être sûr que le client est bien autorisé à l'appeler.
 
-Dans cette article, nous allons voir comment configurer Istio pour exposer un service à l'extérieur du service mesh en le sécurisant avec le protocol mTLS.
+Dans cette article, nous allons voir comment configurer Istio pour exposer un service à l'extérieur du service mesh en le sécurisant avec le protocole mTLS.
 
 Ce modèle avec authentification mutuelle apporte évidemment un meilleur niveau de sécurité (Merci à notre équipe cybersécurité :))
 ## Quelques rappels sur Istio
@@ -42,7 +42,7 @@ La configuration de l'Ingress Gateway Istio est réalisée avec :
 
 ## De quoi avons-nous besoin ?
 
-Nous avons besoins :
+Nous avons besoin :
 En plus d'un cluster Kubernetes avec istio d'installé (il est possible d'utiliser [microK8s](https://microk8s.io/){:target="_blank"} et son plugin istio pour tester. N'ayant dans ce cas pas de Load Balancer, on accédera à la gateway istio en l'exposant en local avec la commande `mk8sctl port-forward -n istio-system service/istio-ingressgateway 8080:80`)
 - d'une autorité de certification pour valider les certificats lors de la négociation TLS.
 - d'un "certificat serveur" pour que le serveur s'identifie auprès du client.
@@ -54,7 +54,7 @@ En plus d'un cluster Kubernetes avec istio d'installé (il est possible d'utilis
 
 Pour réaliser ces tâches, nous allons utiliser OpenSSL.
 
-### Génération de l'authorité de certification
+### Génération de l'autorité de certification
 
 {% highlight shell %}
 openssl req \
@@ -92,13 +92,13 @@ Certificate:
 
 On voit bien que les champs Issuer et Subject sont les mêmes. Nous avons donc notre autorité de certification.
 
-### Génération de la clé pour le serveur
+### Génération de la clé et du certificat pour le serveur
 
 #### Génération de la clé
 
 {% highlight shell %}
 openssl genrsa \
-  -out server.key 2048
+  -out server.key 4096
 {% endhighlight %}
 
 #### Création de la Certificate Signing Request (CSR)
@@ -111,7 +111,7 @@ openssl req \
   -out server.csr
 {% endhighlight %}
 
-#### Signature de la clé
+#### Signature du certificat serveur
 
 {% highlight shell %}
 openssl x509 \
@@ -124,13 +124,13 @@ openssl x509 \
   -out server.crt
 {% endhighlight %}
 
-### Génération de la clé pour le client
+### Génération de la clé et du certificat pour le client
 
 #### Génération de la clé
 
 {% highlight shell %}
 openssl genrsa \
-  -out client.key 2048
+  -out client.key 4096
 {% endhighlight %}
 
 #### Création de la Certificate Signing Request (CSR)
@@ -143,7 +143,7 @@ openssl req \
   -out client.csr
 {% endhighlight %}
 
-#### Signature de la clé
+#### Signature du certificat client
 
 Dans notre cas, nous maîtrisons "à la fois" le client et le serveur. `Dans le cas d'une configuration pour appeler un service fourni par un tiers`, celui-ci ne fournira que l'équivalent de notre ca.crt et ne diffusera jamais sa clé privée (le ca.key). Ce certificat seul permet de vérifier un autre certificat mais ne permet pas d'en signer. `Il faudra donc lui envoyer la CSR` afin qu'il nous renvoie le certificat client signé.
 
@@ -164,7 +164,7 @@ openssl x509 \
 
 ### Création du secret
 
-Nous allons créer un secret contenant le certificat serveur et sa clé privé ainsi que l'autorité de certification.
+Nous allons créer un secret contenant le certificat serveur et sa clé privée ainsi que le certificat de l'autorité de certification.
 
 Le secret est de type `generic` mais il est possible de créer un secret de type `tls`. Seule la syntaxe des clés dans le secret change. Voir la [documentation d'Istio](https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/#key-formats)
 
@@ -179,7 +179,7 @@ kubectl create -n istio-system secret generic httpbin-mtls  \
 
 ### Déploiement de l'application
 
-Contenu du fichier `httpbin.yaml`contenant la description du déploiement :
+Contenu du fichier `httpbin.yaml` contenant la description du déploiement :
 
 {% highlight yaml %}
 # Copyright Istio Authors
