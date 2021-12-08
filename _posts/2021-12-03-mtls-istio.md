@@ -23,7 +23,7 @@ Le mTLS (ou mutual TLS) est une version étendue du protocol TLS qui, toujours e
 
 Dans cette article, nous allons voir comment configurer Istio pour exposer un service à l'extérieur du service mesh en le sécurisant avec le protocol mTLS.
 
-Ce modèle avec authentification mutuelle apporte évidemment un meilleur niveau de sécurité (Merci à notre équipe cybersécurité :)
+Ce modèle avec authentification mutuelle apporte évidemment un meilleur niveau de sécurité (Merci à notre équipe cybersécurité :))
 ## Quelques rappels sur Istio
 
 L'exposition d'un service au sein d'un service mesh géré avec Istio ce décompose ainsi :
